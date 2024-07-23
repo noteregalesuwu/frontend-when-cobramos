@@ -1,0 +1,28 @@
+.info-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+* {
+  font-family: Montserrat, sans-serif;
+}
+
+.image {
+  width: 40%;
+  height: 40%;
+  border-radius: 10px;
+}
+
+.info-section {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  text-align: center;
+}

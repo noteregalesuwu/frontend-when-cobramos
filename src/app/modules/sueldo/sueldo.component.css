@@ -1,0 +1,67 @@
+* {
+  font-family: Montserrat, sans-serif;
+}
+
+.title-container {
+  display: flex;
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.title {
+  color: #20d3a4;
+  margin: 0 auto;
+  width: 50%;
+}
+
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.countdown {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  gap: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.time-section {
+  text-align: center;
+}
+
+.time {
+  display: block;
+  font-size: 2em;
+  font-weight: bold;
+  color: #20d3a4;
+  animation: pulse 1s infinite;
+}
+
+.label {
+  font-size: 1em;
+  color: #666;
+}
+
+.pay-date {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  color: #333;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
