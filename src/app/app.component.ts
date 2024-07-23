@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { LoaderService } from './shared/loader.service';
+import { VisitorCountComponent } from "./shared/components/visitor-count/visitor-count.component";
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,8 @@ import { LoaderService } from './shared/loader.service';
     RouterLink,
     RouterLinkActive,
     LoaderComponent,
-  ],
+    VisitorCountComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
