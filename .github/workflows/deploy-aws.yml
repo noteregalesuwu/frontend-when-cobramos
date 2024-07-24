@@ -50,7 +50,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY }}
           aws-region: ${{vars.AWS_REGION}}
       
-      - name: Deploy to AWS
+      - name: Push image to AWS
         env:
           REGISTRY: ${{ vars.REGISTRY }}
           IMAGE_NAME: ${{ vars.IMAGE_NAME }}
@@ -64,3 +64,11 @@ jobs:
           --service-name ${{vars.AWS_LIGHTSAIL_SERVICE}} \
           --label ${{ github.sha }} \
           --image $REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:$GITHUB_SHA
+
+      - name: Deploy new Container Service
+        run: |
+          sudo apt-get install -y jq
+          aws lightsail get-container-images --service-name ${{vars.AWS_LIGHTSAIL_SERVICE}} | jq --raw-output ".containerImages[0].image" > image.txt
+          jq --arg image $(cat image.txt) '.containers.app.image = $image' container.template.json > container.json
+          aws lightsail create-container-service-deployment --service-name ${{vars.AWS_LIGHTSAIL_SERVICE}} --cli-input-json file://$(pwd)/container.json
+         
