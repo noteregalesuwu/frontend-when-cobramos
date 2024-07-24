@@ -17,9 +17,9 @@ jobs:
 
       - name: Environment Setup
         run: |
-          echo "export const environment = {" >> src/environments/environment.ts"
-          echo "API_URL: '{{ $secrets.API_URL }}', >> src/environments/environment.ts"
-          echo "};" >> src/environments/environment.ts"
+          echo "export const environment = {" >> src/environments/environment.ts
+          echo "API_URL: '${{ secrets.API_URL }}'," >> src/environments/environment.ts
+          echo "};" >> src/environments/environment.ts
 
       - name: Login to Docker Registry
         uses: docker/login-action@v3
