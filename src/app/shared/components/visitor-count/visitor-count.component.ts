@@ -4,11 +4,12 @@ import { environment } from '../../../../environments/environment.development';
 import { Observable } from 'rxjs';
 import { MatChipSet, MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-visitor-count',
   standalone: true,
-  imports: [MatChipsModule, MatChipSet, MatCardModule],
+  imports: [MatChipsModule, MatChipSet, MatCardModule, MatIconModule],
   templateUrl: './visitor-count.component.html',
   styleUrl: './visitor-count.component.css',
 })

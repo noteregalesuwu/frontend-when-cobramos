@@ -1,25 +1,54 @@
 <div class="title-container">
-    <h3 class="title">Página que te avisa cuando cuanto falta para cobrar</h3>
+    <h3 class="text-md sm:text-2xl m-auto text-primary font-monsterrat">Página que te avisa cuando cuanto falta para
+        cobrar</h3>
 </div>
 
+<section class="flex justify-center">
+    <section class="flex w-full justify-between sm:w-4/6 mt-5">
+        <div class="nutria">
 
-<div class="countdown-container">
-    <div class="countdown">
-        <div class="time-section">
-            <span class="time">{{ days }}</span>
-            <div class="label">días</div>
+            <img src="assets/nutria-triste-1.jpg" alt="Nutria">
         </div>
-        <div class="time-section">
-            <span class="time">{{ hours }}</span>
-            <div class="label">horas</div>
+        <div class="nutria">
+
+            <img src="assets/nutria-triste-2.jpg" alt="Nutria">
         </div>
-        <div class="time-section">
-            <span class="time">{{ minutes }}</span>
-            <div class="label">minutos</div>
+        <div class="nutria">
+
+            <img src="assets/nutria-triste-3.jpg" alt="Nutria">
         </div>
-        <div class="time-section">
-            <span class="time">{{ seconds }}</span>
-            <div class="label">segundos</div>
-        </div>
+    </section>
+</section>
+
+<section class="text-center w-full">
+    <!-- Ver momazos -->
+    <button mat-raised-button class="mt-5 mb-5 active:scale-125 font-Monsterrat" routerLink="/memes">
+        Ver momazos
+    </button>
+
+</section>
+
+<div class="flex flex-row sm:w-1/2 sm:mx-auto justify-around bg-gray-200 rounded-md">
+    <div class="text-primary text-xl">
+        <div class="w-full flex justify-center">{{ days }}</div>
+        <div class="">días</div>
+    </div>
+    <div class="text-primary text-xl">
+        <div class="w-full flex justify-center">{{ hours }}</div>
+        <div class="">horas</div>
+    </div>
+    <div class="text-primary text-xl">
+        <div class="w-full flex justify-center">{{ minutes }}</div>
+        <div class="">minutos</div>
+    </div>
+    <div class="text-primary text-xl">
+        <div class="w-full flex justify-center">{{ seconds }}</div>
+        <div class="">segundos</div>
     </div>
 </div>
+<section class="text-center w-full">
+    <button mat-raised-button class="mt-5 mb-5 active:scale-125 font-Monsterrat" routerLink="/aguinaldo">
+        <span class="text-primary font-Monsterrat">Y cuanto falta para el aguinaldo?</span>
+    </button>
+</section>
+<!-- </div> -->

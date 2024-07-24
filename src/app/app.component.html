@@ -1,24 +1,53 @@
-<!-- layout.component.html -->
-<mat-toolbar class="header">
-  <nav class="navbar">
-    <a mat-button routerLink="/home" routerLinkActive="active">Inicio</a>
-    <a mat-button routerLink="/sueldo" routerLinkActive="active">Sueldo</a>
-    <a mat-button routerLink="/aguinaldo" routerLinkActive="active">Aguinaldo</a>
-    <a mat-button routerLink="/memes" routerLinkActive="active">Memes</a>
-    <a mat-button routerLink="/informaciones" routerLinkActive="active">Informaciones</a>
-    <a mat-button href="https://github.com/noteregalesuwu/when_cobramos/issues" target="_blank">Sugerencias</a>
-  </nav>
+<mat-sidenav-container class="flex flex-col h-screen" [ngClass]="{'dark-theme': theme === 'dark'}">
+  <mat-sidenav #drawer mode="over" position="start" class="bg-gray-800 text-white">
+    <nav class="flex flex-col justify-between items-center p-4">
+      @for (menuItem of menuItems; track $index) {
+      <button mat-button class="active:scale-125 font-sans uppercase font-semibold text-primary"
+        routerLink="{{ menuItem.route }}" routerLinkActive="bg-teal-500 text-black">{{ menuItem.title }}</button>
+      }
+      <button mat-button class="active:scale-125 font-sans uppercase font-semibold">
+        <a href="https://github.com/noteregalesuwu/when_cobramos/issues" target="_blank">
+          Sugerencias
+        </a>
+      </button>
+    </nav>
+  </mat-sidenav>
 
-</mat-toolbar>
+  <mat-sidenav-content class="flex flex-col flex-1" [ngClass]="{'dark-theme': theme === 'dark'}">
+    <mat-toolbar class="bg-teal-500 text-white p-5 border-b border-gray-300 text-center">
+      <mat-icon class="text-2xl mt-2 mb-2 cursor-pointer hover:scale-110 text-primary"
+        (click)="drawer.toggle()">menu</mat-icon>
+      <nav class="hidden sm:flex flex-row w-full justify-center items-center p-4 font-sans uppercase font-semibold">
+        @for (menuItem of menuItems; track $index) {
+        <button mat-button class="active:scale-125 font-sans uppercase font-semibold" routerLink="{{ menuItem.route }}"
+          routerLinkActive="bg-teal-500 text-black">{{ menuItem.title }}</button>
+        }
+        <button mat-button class="active:scale-125 font-sans uppercase font-semibold">
+          <a href="https://github.com/noteregalesuwu/when_cobramos/issues" target="_blank">
+            Sugerencias
+          </a>
+        </button>
+        <div (click)="themeToggle()">
+          <mat-icon class="cursor-pointer">
+            {{ theme === 'dark' ? 'wb_sunny' : 'dark_mode' }}
+          </mat-icon>
+        </div>
+      </nav>
+    </mat-toolbar>
 
-<div class="main-content">
-  <router-outlet></router-outlet>
-</div>
+    <div class="flex flex-1 overflow-auto p-5 min-h-[calc(100vh-128px)] h-[80%] bg-gray-600">
+      <mat-card appearance="outlined" class="flex-1">
+        <mat-card-content>
+          <router-outlet></router-outlet>
+        </mat-card-content>
+      </mat-card>
 
-<mat-toolbar class="footer">
-  <app-visitor-count></app-visitor-count>
-</mat-toolbar>
-
-@if (isLoading) {
-<app-loader></app-loader>
-}
+    </div>
+    <mat-toolbar class="bg-red-300 primary text-white justify-center">
+      <app-visitor-count></app-visitor-count>
+    </mat-toolbar>
+    @if (isLoading) {
+    <app-loader></app-loader>
+    }
+  </mat-sidenav-content>
+</mat-sidenav-container>

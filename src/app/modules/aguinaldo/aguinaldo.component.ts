@@ -1,11 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CountdownService } from '../../services/countdown.service';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-aguinaldo',
   standalone: true,
-  imports: [],
+  imports: [MatButtonModule, RouterLink],
   templateUrl: './aguinaldo.component.html',
   styleUrl: './aguinaldo.component.css',
 })

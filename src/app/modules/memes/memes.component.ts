@@ -8,6 +8,7 @@ import { MemeProvider } from '../../services/interfaces/memes-provider.interface
 import { MatDialog } from '@angular/material/dialog';
 import { ViewMemeComponent } from './components/view-meme/view-meme.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-memes',
@@ -18,6 +19,7 @@ import { MatCardModule } from '@angular/material/card';
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
+    MatGridListModule,
   ],
   templateUrl: './memes.component.html',
   styleUrl: './memes.component.css',

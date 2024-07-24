@@ -1,25 +1,31 @@
 <div class="title-container">
-    <h3 class="title">Página que te avisa cuando cuanto falta para cobrar el aguinaldo</h3>
+    <h3 class="text-md sm:text-2xl m-auto text-primary font-monsterrat">Página que te avisa cuando cuanto falta para
+        cobrar el
+        aguinaldo</h3>
 </div>
 
 
-<div class="countdown-container">
-    <div class="countdown">
-        <div class="time-section">
-            <span class="time">{{ days }}</span>
-            <div class="label">días</div>
-        </div>
-        <div class="time-section">
-            <span class="time">{{ hours }}</span>
-            <div class="label">horas</div>
-        </div>
-        <div class="time-section">
-            <span class="time">{{ minutes }}</span>
-            <div class="label">minutos</div>
-        </div>
-        <div class="time-section">
-            <span class="time">{{ seconds }}</span>
-            <div class="label">segundos</div>
-        </div>
+<div class="flex flex-row sm:w-1/2 sm:mx-auto justify-around bg-gray-200 rounded-md">
+    <div class="text-primary text-xl">
+        <div class="w-full flex justify-center">{{ days }}</div>
+        <div class="">días</div>
+    </div>
+    <div class="text-primary text-xl">
+        <div class="w-full flex justify-center">{{ hours }}</div>
+        <div class="">horas</div>
+    </div>
+    <div class="text-primary text-xl">
+        <div class="w-full flex justify-center">{{ minutes }}</div>
+        <div class="">minutos</div>
+    </div>
+    <div class="text-primary text-xl">
+        <div class="w-full flex justify-center">{{ seconds }}</div>
+        <div class="">segundos</div>
     </div>
 </div>
+
+<section class="text-center w-full">
+    <button mat-raised-button class="mt-5 mb-5 active:scale-125 font-Monsterrat" routerLink="/sueldo">
+        <span class="text-primary font-Monsterrat">Y cuanto falta para cobrar el sueldo?</span>
+    </button>
+</section>

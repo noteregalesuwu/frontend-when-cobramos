@@ -65,3 +65,26 @@
     transform: scale(1);
   }
 }
+
+.nutrias-container {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  margin-top: 20px;
+}
+.nutria {
+  flex: 1; /* Esto hace que cada imagen tenga un tamaño equitativo */
+  padding: 10px; /* Añade algo de espacio alrededor de cada imagen */
+}
+
+.nutria img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.nutria img:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}

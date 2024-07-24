@@ -1,30 +1,34 @@
-<section class="meme-select-container">
+<!-- Contenido del componente de memes -->
+<mat-card class="flex flex-col h-full w-full">
+    <mat-card-content class="flex flex-col h-full">
+        <span class="text-primary text-xl font-bold">Memes Frescos</span>
+        <mat-form-field class="w-full">
+            <mat-label>Categoria</mat-label>
+            <mat-select [formControl]="providers" (selectionChange)="onSelectChange($event)">
+                <mat-select-trigger>
+                    {{ providers.value }}
+                </mat-select-trigger>
+                @for (provider of memeProviders; track provider) {
+                <mat-option [value]="provider.provider">{{ provider.name }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
 
-    <span class="meme-select-title">Memes Frescos</span>
-    <mat-form-field>
-        <mat-label>Categoria</mat-label>
-        <mat-select [formControl]="providers" (selectionChange)="onSelectChange($event)">
-            <mat-select-trigger>
-                {{
-                providers.value
-                }}
-
-            </mat-select-trigger>
-            @for (provider of memeProviders; track provider) {
-            <mat-option [value]="provider.provider">{{provider.name}}</mat-option>
-            }
-        </mat-select>
-    </mat-form-field>
-</section>
-
-<div class="memes-grid">
-    @for (meme of memeList; track $index) {
-    <mat-card class="meme" (click)="openMeme(meme.url,meme.title)">
-        <img mat-card-image src="{{meme.preview[meme.preview.length - 1]}}" alt="{{meme.title}}">
-        <mat-card-content>
-            <p>{{meme.title}}</p>
-        </mat-card-content>
-    </mat-card>
-
-    }
-</div>
+        <!-- Contenedor principal para el grid de memes -->
+        <div class="flex-1 overflow-y-auto p-4" style="height: 100%;">
+            <mat-grid-list cols="3" gutterSize="16px">
+                @for (meme of memeList; track $index) {
+                <mat-grid-tile>
+                    <mat-card class="cursor-pointer hover:shadow-lg transition-shadow duration-300"
+                        (click)="openMeme(meme.url,meme.title)">
+                        <img mat-card-image src="{{ meme.preview[meme.preview.length - 1] }}" alt="{{ meme.title }}">
+                        <mat-card-content>
+                            <p class="text-center font-medium">{{ meme.title }}</p>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-grid-tile>
+                }
+            </mat-grid-list>
+        </div>
+    </mat-card-content>
+</mat-card>
