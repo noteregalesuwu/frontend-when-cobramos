@@ -1,6 +1,6 @@
 {
     "containers": {
-      "frontend-when-cobramos-container": {
+      "app": {
         "image": "",
         "environment": {
         },
@@ -10,7 +10,7 @@
       }
     },
     "publicEndpoint": {
-      "containerName": "frontend-when-cobramos-container",
+      "containerName": "app",
       "containerPort": 80,
       "healthCheck": {
         "healthyThreshold": 2,
