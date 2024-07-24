@@ -44,7 +44,7 @@ jobs:
           docker push $REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
 
       - name: Deploy to AWS
-        uses: fdiesel/github-action-deploy-aws-lightsail-container@3.0.1
+        uses: fdiesel/github-action-deploy-aws-lightsail-container@v3.0.1
         with:
           image-name: ${{vars.IMAGE_NAME}}
           image: ${{vars.REGISTRY}}/${{vars.IMAGE_NAME}}:${{github.sha}}
