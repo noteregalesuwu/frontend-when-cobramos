@@ -4,7 +4,7 @@ WORKDIR /app
 COPY *.json .
 RUN npm install
 COPY . .
-RUN npm run build --build
+RUN npm run build --omit=dev
 #SSJ Fase 2
 FROM nginx:1.27.0-alpine
 COPY --from=build /app/dist/when-cobramos-frontend/browser/ /usr/share/nginx/html/
