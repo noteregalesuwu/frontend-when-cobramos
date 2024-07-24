@@ -57,6 +57,8 @@ jobs:
           GITHUB_SHA: ${{ github.sha }}
           DOCKER_USERNAME: ${{ secrets.REGISTRY_USER }}
         run: |
+          curl "https://s3.us-west-2.amazonaws.com/lightsailctl/latest/linux-amd64/lightsailctl" -o "/usr/local/bin/lightsailctl"
+          sudo chmod +x /usr/local/bin/lightsailctl
           aws lightsail push-container-image \
           --region ${{vars.AWS_REGION}} \
           --service-name ${{vars.AWS_LIGHTSAIL_SERVICE}} \
