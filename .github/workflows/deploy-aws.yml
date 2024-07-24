@@ -51,6 +51,11 @@ jobs:
           aws-region: ${{vars.AWS_REGION}}
       
       - name: Deploy to AWS
+        env:
+          REGISTRY: ${{ vars.REGISTRY }}
+          IMAGE_NAME: ${{ vars.IMAGE_NAME }}
+          GITHUB_SHA: ${{ github.sha }}
+          DOCKER_USERNAME: ${{ secrets.REGISTRY_USER }}
         run: |
           aws lightsail push-container-image \
           --region ${{vars.AWS_REGION}} \
