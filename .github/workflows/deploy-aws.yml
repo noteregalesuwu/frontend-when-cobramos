@@ -20,7 +20,10 @@ jobs:
           echo "export const environment = {" >> src/environments/environment.ts
           echo "API_URL: '${{ secrets.API_URL }}'," >> src/environments/environment.ts
           echo "};" >> src/environments/environment.ts
-          cat src/environments/environment.ts 
+          echo "export const environment = {" >> src/environments/environment.development.ts
+          echo "API_URL: '${{ secrets.API_URL }}'," >> src/environments/environment.development.ts
+          echo "};" >> src/environments/environment.development.ts
+          cat src/environments/environment.development.ts 
 
       - name: Login to Docker Registry
         uses: docker/login-action@v3
