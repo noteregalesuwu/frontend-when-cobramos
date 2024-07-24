@@ -1,4 +1,5 @@
-<mat-sidenav-container class="flex flex-col h-screen" [ngClass]="{'dark-theme': theme === 'dark'}">
+<mat-sidenav-container class="flex flex-col h-screen"
+  [ngClass]="{'dark-theme': theme === 'dark', 'light-theme': theme !== 'dark'}">
   <mat-sidenav #drawer mode="over" position="start" class="bg-gray-800 text-white">
     <nav class="flex flex-col justify-between items-center p-4">
       @for (menuItem of menuItems; track $index) {
@@ -13,10 +14,10 @@
     </nav>
   </mat-sidenav>
 
-  <mat-sidenav-content class="flex flex-col flex-1" [ngClass]="{'dark-theme': theme === 'dark'}">
-    <mat-toolbar class="bg-teal-500 text-white p-5 border-b border-gray-300 text-center">
-      <mat-icon class="text-2xl mt-2 mb-2 cursor-pointer hover:scale-110 text-primary"
-        (click)="drawer.toggle()">menu</mat-icon>
+  <mat-sidenav-content class="flex flex-col flex-1"
+    [ngClass]="{'dark-theme': theme === 'dark', 'light-theme': theme !== 'dark'}">
+    <mat-toolbar class="custom-toolbar p-5 border-b border-gray-300 text-center">
+      <mat-icon class="text-2xl mt-2 mb-2 cursor-pointer hover:scale-110" (click)="drawer.toggle()">menu</mat-icon>
       <nav class="hidden sm:flex flex-row w-full justify-center items-center p-4 font-sans uppercase font-semibold">
         @for (menuItem of menuItems; track $index) {
         <button mat-button class="active:scale-125 font-sans uppercase font-semibold" routerLink="{{ menuItem.route }}"
@@ -41,11 +42,12 @@
           <router-outlet></router-outlet>
         </mat-card-content>
       </mat-card>
-
     </div>
-    <mat-toolbar class="bg-red-300 primary text-white justify-center">
+
+    <mat-toolbar class="custom-toolbar text-white justify-center">
       <app-visitor-count></app-visitor-count>
     </mat-toolbar>
+
     @if (isLoading) {
     <app-loader></app-loader>
     }

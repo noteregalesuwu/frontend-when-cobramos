@@ -16,3 +16,12 @@ body {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* styles.css o styles.scss */
+.light-theme .custom-toolbar {
+  background-color: #20d3a4; /* Color para el tema claro */
+}
+
+.dark-theme .custom-toolbar {
+  background-color: #126d55; /* Color para el tema oscuro */
+}
