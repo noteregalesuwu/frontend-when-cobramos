@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+/**
+ * Usamos la api de html para abrir un enlace en una nueva pestaña. de manera excepcional por ahora
+ * @see https://api.flutter.dev/flutter/dart-html/html-library.html
+ * 
+ */
+
+import 'dart:html' as html;
 
 class SugerenciasPage extends StatelessWidget {
   const SugerenciasPage({super.key});
@@ -20,33 +26,30 @@ class SugerenciasPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     _launchURL();
-            //   },
-            //   child: const Text('Abrir en GitHub'),
-            // ),
             Text(
-              'Puedes abrir un issue en GitHub \n\n https://github.com/noteregalesuwu/frontend-when-cobramos/issues',
+              'Puedes abrir un issue en GitHub \n\n',
               style: TextStyle(fontSize: 18),
               textAlign: TextAlign.center,
             ),
+            ElevatedButton(
+              onPressed: _launchURL,
+              child: Text(
+                'Ver en GitHub',
+                style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.bold),
+              ),
+            )
           ],
         ),
       ),
     );
   }
 
-  void _launchURL() async {
-    const url = 'https://github.com/noteregalesuwu/frontend-when-cobramos/issues';
-    // create uri from string
-    final Uri uri = Uri.parse(url);
-    await launchUrl(uri);
-
-    // if (await canLaunch(url)) {
-    //   await launch(url);
-    // } else {
-    //   throw 'No se pudo abrir $url';
-    // }
+  static void _launchURL() async {
+    const url =
+        'https://github.com/noteregalesuwu/frontend-when-cobramos/issues';
+    html.window.open(url, 'GitHub');
   }
 }
