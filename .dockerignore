@@ -1,0 +1,75 @@
+# Ignorar archivos y directorios de control de versiones
+.git
+.gitignore
+
+# Ignorar archivos específicos de Flutter y Dart
+.buildlog
+.dart_tool/
+.packages
+.pub/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Ignorar la carpeta de construcción (build)
+build/
+
+# Ignorar archivos y carpetas de sistema y de IDE
+.DS_Store
+.idea/
+.vscode/
+*.iml
+
+# Ignorar archivos de configuración personal o secreta
+config/
+
+# Ignore build artifacts
+/build/
+/ios/Flutter/App.framework/
+/ios/Flutter/Flutter.framework/
+/ios/Flutter/Flutter.podspec
+/ios/Flutter/Generated.xcconfig
+/ios/Flutter/Generated.xcconfig.sh
+/ios/Flutter/Generated.xcconfig.sh.tmp
+/ios/Flutter/Generated.xcconfig.tmp
+/ios/Flutter/flutter_export_environment.sh
+/ios/Flutter/flutter_project.pbxproj
+/ios/Flutter/flutter_runner.xcodeproj/
+/ios/Flutter/flutter_runner.xcworkspace/
+/ios/Flutter/flutter_runner.xcworkspace/xcshareddata/
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/WorkspaceSettings.xcsettings
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcdebugger/
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcdebugger/WatchpointActions_v2.xcbkptlist
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcdebugger/WatchpointConditions_v2.xcbkptlist
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcdebugger/WatchpointLocations_v2.xcbkptlist
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcdebugger/xcdebugger/
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcdebugger/xcdebugger/Breakpoints_v2.xcbkptlist
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcdebugger/xcdebugger/WatchpointActions_v2.xcbkptlist
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcdebugger/xcdebugger/WatchpointConditions_v2.xcbkptlist
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcdebugger/xcdebugger/WatchpointLocations_v2.xcbkptlist
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Flutter Runner.xcscheme
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Flutter Runner.xcscheme/xcshareddata/
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Flutter Runner.xcscheme/xcshareddata/xcschememanagement.plist
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Flutter Runner.xcscheme/xcshareddata/xcschememanagement.plist.tmp
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Flutter Runner.xcscheme/xcshareddata/xcschememanagement.plist.tmp.tmp
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Runner.xcscheme
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Runner.xcscheme/xcshareddata/
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Runner.xcscheme/xcshareddata/xcschememanagement.plist
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Runner.xcscheme/xcshareddata/xcschememanagement.plist.tmp
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Runner.xcscheme/xcshareddata/xcschememanagement.plist.tmp.tmp
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Runner.xcscheme/xcshareddata/xcschememanagement.plist.tmp.tmp.tmp
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Runner.xcscheme/xcshareddata/xcschememanagement.plist.tmp.tmp.tmp.tmp
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Runner.xcscheme/xcshareddata/xcschememanagement.plist.tmp.tmp.tmp.tmp.tmp
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Runner.xcscheme/xcshareddata/xcschememanagement.plist.tmp.tmp.tmp.tmp.tmp.tmp
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Runner.xcscheme/xcshareddata/xcschememanagement.plist.tmp.tmp.tmp.tmp.tmp.tmp.tmp
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Runner.xcscheme/xcshareddata/xcschememanagement.plist.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Runner.xcscheme/xcshareddata/xcschememanagement.plist.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Runner.xcscheme/xcshareddata/xcschememanagement.plist.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Runner.xcscheme/xcshareddata/xcschememanagement.plist.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Runner.xcscheme/xcshareddata/xcschememanagement.plist.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Runner.xcscheme/xcshareddata/xcschememanagement.plist.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Runner.xcscheme/xcshareddata/xcschememanagement.plist.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp
+/ios/Flutter/flutter_runner.xcworkspace/xcuserdata/$(USER).xcuserdatad/xcschemes/Runner.xcscheme/xcshareddata/xcschememanagement.plist.tmp.tmp.tmp.tmp.tmp.tmp.tmp.tmp
