@@ -11,6 +11,7 @@ class InformacionesPage extends StatelessWidget {
 
     return Scaffold(
       body: Center(
+          child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -68,7 +69,7 @@ class InformacionesPage extends StatelessWidget {
             ),
           ],
         ),
-      ),
+      )),
     );
   }
 }
