@@ -7,6 +7,8 @@ import 'package:when_cobramos_flutter/views/sueldo_page.dart';
 import 'package:when_cobramos_flutter/views/sugerencias_page.dart';
 import 'package:when_cobramos_flutter/components/footer_component.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 class MyHomePage extends StatefulWidget {
   final String title;
@@ -187,7 +189,12 @@ class _MyHomePageState extends State<MyHomePage>
 
 void main() async {
   await dotenv.load(fileName: ".env");
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MaterialApp(
+    title: 'Uen Cobramos',
+    themeMode: ThemeMode.system,
     home: MyHomePage(title: 'Uen Cobramos'),
   ));
 }

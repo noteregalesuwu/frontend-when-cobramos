@@ -37,6 +37,8 @@ dependencies:
   http: ^1.2.2
   url_launcher: ^6.3.0
   flutter_dotenv: ^5.1.0
+  firebase_analytics: ^11.2.0
+  firebase_core: ^3.2.0
 
 dev_dependencies:
   flutter_test:

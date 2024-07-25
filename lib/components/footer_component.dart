@@ -45,7 +45,7 @@ class _FooterComponentState extends State<FooterComponent> {
         await http.post(Uri.parse('$apiUrl/visitors/register'), body: {
       'name': 'when_cobramos_flutter',
     });
-    if (response.statusCode != 200) {
+    if (response.statusCode != 201) {
       // Manejar error
       print('Error al registrar la visita');
     }
