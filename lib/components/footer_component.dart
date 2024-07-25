@@ -22,7 +22,7 @@ class _FooterComponentState extends State<FooterComponent> {
   }
 
   Future<void> _fetchVisitCount() async {
-    final apiUrl = dotenv.env['API_URL'] ?? 'http://localhost:3000';
+    final apiUrl = dotenv.env['API_URL'] ?? '';
 
     final response = await http.get(Uri.parse('$apiUrl/visitors/total'));
     if (response.statusCode == 200) {
@@ -38,7 +38,7 @@ class _FooterComponentState extends State<FooterComponent> {
   }
 
   Future<void> _registerVisit() async {
-    final apiUrl = dotenv.env['API_URL'] ?? 'http://localhost:3000';
+    final apiUrl = dotenv.env['API_URL'] ?? '';
 
     final response =
         await http.post(Uri.parse('$apiUrl/visitors/register'), body: {
