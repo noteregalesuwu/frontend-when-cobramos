@@ -20,13 +20,16 @@ class SugerenciasPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
-            GestureDetector(
-              onTap: _launchURL,
-              child: Text(
-                'Puedes abrir un issue en GitHub \n\n https://github.com/noteregalesuwu/frontend-when-cobramos/issues',
-                style: TextStyle(fontSize: 18, color: Colors.blue),
-                textAlign: TextAlign.center,
-              ),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     _launchURL();
+            //   },
+            //   child: const Text('Abrir en GitHub'),
+            // ),
+            Text(
+              'Puedes abrir un issue en GitHub \n\n https://github.com/noteregalesuwu/frontend-when-cobramos/issues',
+              style: TextStyle(fontSize: 18),
+              textAlign: TextAlign.center,
             ),
           ],
         ),
@@ -34,13 +37,16 @@ class SugerenciasPage extends StatelessWidget {
     );
   }
 
-  static void _launchURL() async {
+  void _launchURL() async {
     const url = 'https://github.com/noteregalesuwu/frontend-when-cobramos/issues';
+    // create uri from string
     final Uri uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      throw 'No se pudo abrir $url';
-    }
+    await launchUrl(uri);
+
+    // if (await canLaunch(url)) {
+    //   await launch(url);
+    // } else {
+    //   throw 'No se pudo abrir $url';
+    // }
   }
 }
