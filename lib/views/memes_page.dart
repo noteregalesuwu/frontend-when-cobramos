@@ -13,11 +13,6 @@ class _MemesPageState extends State<MemesPage> {
   final List<Map<String, String>> memesProvider = [
     {'provider': 'MemesEspanol', 'name': 'Memes en Español'},
     {'provider': 'ProgrammerHumor', 'name': 'Programmer Humor'},
-    {'provider': 'DankMeme', 'name': 'Dank Memes'},
-    {'provider': 'Wholesome', 'name': 'Wholesome Memes'},
-    {'provider': 'Animemes', 'name': 'Animemes'},
-    {'provider': 'HistoryMemes', 'name': 'History Memes'},
-    {'provider': 'BeelcitosMemes', 'name': 'Beelcitos Memes'},
   ];
 
   String selectedProvider = 'MemesEspanol';
