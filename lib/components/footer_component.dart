@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 class FooterComponent extends StatefulWidget {
   const FooterComponent({super.key});
 
@@ -20,8 +22,9 @@ class _FooterComponentState extends State<FooterComponent> {
   }
 
   Future<void> _fetchVisitCount() async {
-    final response =
-        await http.get(Uri.parse('http://localhost:3000/visitors/total'));
+    final apiUrl = dotenv.env['API_URL'] ?? 'http://localhost:3000';
+
+    final response = await http.get(Uri.parse('$apiUrl/visitors/total'));
     if (response.statusCode == 200) {
       setState(() {
         _visitCount = json.decode(response.body)['count'];
@@ -35,8 +38,10 @@ class _FooterComponentState extends State<FooterComponent> {
   }
 
   Future<void> _registerVisit() async {
-    final response = await http
-        .post(Uri.parse('http://localhost:3000/visitors/register'), body: {
+    final apiUrl = dotenv.env['API_URL'] ?? 'http://localhost:3000';
+
+    final response =
+        await http.post(Uri.parse('$apiUrl/visitors/register'), body: {
       'name': 'when_cobramos_flutter',
     });
     if (response.statusCode != 200) {

@@ -6,6 +6,7 @@ import 'package:when_cobramos_flutter/views/memes_page.dart';
 import 'package:when_cobramos_flutter/views/sueldo_page.dart';
 import 'package:when_cobramos_flutter/views/sugerencias_page.dart';
 import 'package:when_cobramos_flutter/components/footer_component.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class MyHomePage extends StatefulWidget {
   final String title;
@@ -184,7 +185,8 @@ class _MyHomePageState extends State<MyHomePage>
   }
 }
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: ".env");
   runApp(const MaterialApp(
     home: MyHomePage(title: 'Uen Cobramos'),
   ));
