@@ -46,93 +46,95 @@ class _AguinaldoPageState extends State<AguinaldoPage> {
 
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // const SizedBox(height: 32),
-            const Text(
-              'Página que te avisa cuando cuanto falta para el Aguinaldo',
-              style: TextStyle(
-                fontFamily: 'Montserrat',
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(
-                      30.0), // Ajusta el radio según sea necesario
-                  child: Image.asset('assets/img/nutria-triste.jpg',
-                      width: 200, height: 200),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'Porque no puedo adelantar el tiempo?', // Aquí va la descripción
-              style: TextStyle(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // const SizedBox(height: 32),
+              const Text(
+                'Página que te avisa cuando cuanto falta para el Aguinaldo',
+                style: TextStyle(
                   fontFamily: 'Montserrat',
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 32),
-            FractionallySizedBox(
-              widthFactor: isLargeScreen ? 0.5 : 1.0,
-              child: Container(
-                padding: const EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildTimeCard(_timeRemaining.inDays, 'Días'),
-                    const SizedBox(width: 8),
-                    _buildTimeCard(
-                        _timeRemaining.inHours.remainder(24), 'Horas'),
-                    const SizedBox(width: 8),
-                    _buildTimeCard(
-                        _timeRemaining.inMinutes.remainder(60), 'Minutos'),
-                    const SizedBox(width: 8),
-                    _buildTimeCard(
-                        _timeRemaining.inSeconds.remainder(60), 'Segundos'),
-                  ],
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(
+                        30.0), // Ajusta el radio según sea necesario
+                    child: Image.asset('assets/img/nutria-triste.jpg',
+                        width: 200, height: 200),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                'Porque no puedo adelantar el tiempo?', // Aquí va la descripción
+                style: TextStyle(
+                    fontFamily: 'Montserrat',
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 32),
+              FractionallySizedBox(
+                widthFactor: isLargeScreen ? 0.5 : 1.0,
+                child: Container(
+                  padding: const EdgeInsets.all(16.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildTimeCard(_timeRemaining.inDays, 'Días'),
+                      const SizedBox(width: 8),
+                      _buildTimeCard(
+                          _timeRemaining.inHours.remainder(24), 'Horas'),
+                      const SizedBox(width: 8),
+                      _buildTimeCard(
+                          _timeRemaining.inMinutes.remainder(60), 'Minutos'),
+                      const SizedBox(width: 8),
+                      _buildTimeCard(
+                          _timeRemaining.inSeconds.remainder(60), 'Segundos'),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 32),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     ElevatedButton(
-            //       onPressed: () {
-            //         Navigator.pushNamed(context, '/memes');
-            //       },
-            //       child: const Text('Memes'),
-            //     ),
-            //     const SizedBox(width: 16),
-            //     ElevatedButton(
-            //       onPressed: () {
-            //         Navigator.pushNamed(context, '/sueldo');
-            //       },
-            //       child: const Text('Sueldo'),
-            //     ),
-            //   ],
-            // ),
-          ],
+              const SizedBox(height: 32),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     ElevatedButton(
+              //       onPressed: () {
+              //         Navigator.pushNamed(context, '/memes');
+              //       },
+              //       child: const Text('Memes'),
+              //     ),
+              //     const SizedBox(width: 16),
+              //     ElevatedButton(
+              //       onPressed: () {
+              //         Navigator.pushNamed(context, '/sueldo');
+              //       },
+              //       child: const Text('Sueldo'),
+              //     ),
+              //   ],
+              // ),
+            ],
+          ),
         ),
       ),
     );

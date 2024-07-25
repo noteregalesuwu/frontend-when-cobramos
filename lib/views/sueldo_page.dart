@@ -57,6 +57,7 @@ class _SueldoPageState extends State<SueldoPage> {
       //   title: const Text('Sueldo Page'),
       // ),
       body: Center(
+          child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -152,7 +153,7 @@ class _SueldoPageState extends State<SueldoPage> {
             ),
           ],
         ),
-      ),
+      )),
     );
   }
 
