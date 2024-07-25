@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -60,7 +61,7 @@ class _FooterComponentState extends State<FooterComponent> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'Visitas: $_visitCount',
+            'Visitas: $_visitCount 🔥',
             style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -69,13 +70,21 @@ class _FooterComponentState extends State<FooterComponent> {
           ),
           const SizedBox(height: 8.0),
           const Text(
-            '© 2024 When Cobramos',
+            '© 2024 nutriaschambeadoras',
             style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'Montserrat',
-                fontSize: 16,
+                fontSize: 12,
                 fontWeight: FontWeight.bold),
           ),
+          const Text(
+            'Version 0.0.1-release',
+            style: TextStyle(
+                color: Colors.white,
+                fontFamily: 'Montserrat',
+                fontSize: 12,
+                fontWeight: FontWeight.bold),
+          )
         ],
       ),
     );
