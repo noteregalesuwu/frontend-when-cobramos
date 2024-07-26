@@ -1,8 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class FooterComponent extends StatefulWidget {
@@ -18,8 +17,8 @@ class _FooterComponentState extends State<FooterComponent> {
   @override
   void initState() {
     super.initState();
-    _fetchVisitCount();
     _registerVisit();
+    _fetchVisitCount();
   }
 
   Future<void> _fetchVisitCount() async {
@@ -47,7 +46,9 @@ class _FooterComponentState extends State<FooterComponent> {
     });
     if (response.statusCode != 201) {
       // Manejar error
-      print('Error al registrar la visita');
+      if (kDebugMode) {
+        print('Error al registrar la visita');
+      }
     }
   }
 

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,15 +19,27 @@ class _MemesPageState extends State<MemesPage> {
   String selectedProvider = 'MemesEspanol';
 
   Future<List<String>> fetchMemes() async {
-    final response = await http
-        .get(Uri.parse('https://meme-api.com/gimme/$selectedProvider/50'));
+    try {
+      final response = await http
+          .get(Uri.parse('https://meme-api.com/gimme/$selectedProvider/50'))
+          .catchError((e) {
+        if (kDebugMode) {
+          print(e);
+        }
+      });
 
-    if (response.statusCode == 200) {
-      Map<String, dynamic> data = json.decode(response.body);
-      List<dynamic> memes = data['memes'];
-      return memes.map((meme) => meme['url'] as String).toList();
-    } else {
-      throw Exception('Failed to load memes');
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = json.decode(response.body);
+        List<dynamic> memes = data['memes'];
+        return memes.map((meme) => meme['url'] as String).toList();
+      } else {
+        throw Exception('Failed to load memes');
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      return [];
     }
   }
 
