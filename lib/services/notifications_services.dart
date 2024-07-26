@@ -1,7 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
@@ -41,7 +40,7 @@ class NotificationService {
 
   Future<String> registerToken(String token) async {
     try {
-      final apiUrl = dotenv.env['API_URL'] ?? '';
+      const apiUrl = String.fromEnvironment('API_URL', defaultValue: '');
       final response =
           await http.post(Uri.parse('$apiUrl/notifications/register'), body: {
         'token': token,
@@ -117,7 +116,7 @@ class NotificationService {
       return;
     }
 
-    final vapidKey = dotenv.env['VAPID_KEY'] ?? '';
+    const vapidKey = String.fromEnvironment('VAPID_KEY', defaultValue: '');
 
     if (kDebugMode) {
       print('Vapid Key: $vapidKey');

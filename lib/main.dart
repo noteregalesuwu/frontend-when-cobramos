@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:when_cobramos_flutter/views/aguinaldo_page.dart';
 import 'package:when_cobramos_flutter/views/home_page.dart';
 import 'package:when_cobramos_flutter/views/informaciones_page.dart';
@@ -7,12 +6,6 @@ import 'package:when_cobramos_flutter/views/memes_page.dart';
 import 'package:when_cobramos_flutter/views/sueldo_page.dart';
 import 'package:when_cobramos_flutter/views/sugerencias_page.dart';
 import 'package:when_cobramos_flutter/components/footer_component.dart';
-// import 'package:flutter_dotenv/flutter_dotenv.dart';
-// import 'package:firebase_core/firebase_core.dart';
-// import 'firebase_options.dart';
-// // core Flutter primitives
-// import 'package:flutter/foundation.dart';
-// import 'package:firebase_messaging/firebase_messaging.dart';
 
 class MyHomePage extends StatefulWidget {
   final String title;
@@ -192,7 +185,7 @@ class _MyHomePageState extends State<MyHomePage>
 }
 
 Future<void> main() async {
-  await dotenv.load(fileName: ".env");
+  // await dotenv.load(fileName: ".env");
 
   runApp(const MaterialApp(
     title: 'Uen Cobramos',
