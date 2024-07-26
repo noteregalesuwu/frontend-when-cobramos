@@ -42,6 +42,10 @@ class _FooterComponentState extends State<FooterComponent> {
       const apiUrl =
           String.fromEnvironment('API_URL', defaultValue: 'SOME_DEFAULT_VALUE');
 
+      if (kDebugMode) {
+        print('API URL: $apiUrl');
+      }
+
       final response =
           await http.post(Uri.parse('$apiUrl/visitors/register'), body: {
         'name': 'when_cobramos_flutter',
@@ -49,7 +53,7 @@ class _FooterComponentState extends State<FooterComponent> {
       if (response.statusCode != 201) {
         // Manejar error
         if (kDebugMode) {
-          print('Error al registrar la visita');
+          print('Error al registrar la visita ${response.body} <===');
         }
       }
     } catch (e) {
@@ -86,7 +90,7 @@ class _FooterComponentState extends State<FooterComponent> {
                 fontWeight: FontWeight.bold),
           ),
           const Text(
-            'Version 0.0.6-release',
+            'Version 0.0.7-release',
             style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'Montserrat',

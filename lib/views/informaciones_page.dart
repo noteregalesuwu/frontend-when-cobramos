@@ -57,15 +57,24 @@ class InformacionesPage extends StatelessWidget {
                   constraints: BoxConstraints(
                     maxWidth: imageWidth,
                   ),
-                  child: Image.asset(
-                    'assets/img/nutria-triste-3.jpg',
-                    fit: BoxFit.cover,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16.0),
+                    child: Image.asset(
+                      'assets/img/nutria-triste-3.jpg',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 );
               },
             ),
             const Text(
               'Lic. Nutriologo',
+              style: TextStyle(
+                fontFamily: 'Montserrat',
+                fontSize: 16,
+                color: Color(0xFF20D3A4),
+                fontWeight: FontWeight.w900,
+              ),
             ),
           ],
         ),

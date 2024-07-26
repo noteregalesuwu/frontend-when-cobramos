@@ -134,8 +134,6 @@ class NotificationService {
           print(e);
         }
       }
-    } else {
-      token = await messaging.getToken();
     }
 
     if (kDebugMode) {
