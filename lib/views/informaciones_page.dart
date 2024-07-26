@@ -58,7 +58,7 @@ class InformacionesPage extends StatelessWidget {
                     maxWidth: imageWidth,
                   ),
                   child: Image.asset(
-                    'assets/img/nutria-triste.jpg',
+                    'assets/img/nutria-triste-3.jpg',
                     fit: BoxFit.cover,
                   ),
                 );
