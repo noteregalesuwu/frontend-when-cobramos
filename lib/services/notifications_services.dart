@@ -5,6 +5,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:firebase_core/firebase_core.dart';
+import '../firebase_options.dart';
+
 class NotificationService {
   Future<void> listenNotifications() async {
     FirebaseMessaging.onMessage.listen(_showFlutterNotification);
@@ -53,6 +56,68 @@ class NotificationService {
         print('Error al registrar el token: $e');
       }
       return 'Error al registrar el token';
+    }
+  }
+
+  Future<void> initNotifications() async {
+    await dotenv.load(fileName: ".env");
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+
+    WidgetsFlutterBinding.ensureInitialized();
+
+    final messaging = FirebaseMessaging.instance;
+
+    final settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+
+    final vapidKey = dotenv.env['VAPID_KEY'] ?? '';
+
+    if (kDebugMode) {
+      print('Vapid Key: $vapidKey');
+    }
+
+    String? token;
+
+    if (DefaultFirebaseOptions.currentPlatform == DefaultFirebaseOptions.web) {
+      try {
+        token = await messaging.getToken(
+          vapidKey: vapidKey,
+        );
+      } catch (e) {
+        if (kDebugMode) {
+          print(e);
+        }
+      }
+    } else {
+      token = await messaging.getToken();
+    }
+
+    if (kDebugMode) {
+      print('Registration Token=$token');
+    }
+
+    /**
+   * Register token
+   */
+    try {
+      NotificationService().registerToken(token ?? '');
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+
+    if (kDebugMode) {
+      print('Permission granted: ${settings.authorizationStatus}');
     }
   }
 }

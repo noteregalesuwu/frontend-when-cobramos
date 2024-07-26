@@ -38,16 +38,22 @@ class _FooterComponentState extends State<FooterComponent> {
   }
 
   Future<void> _registerVisit() async {
-    final apiUrl = dotenv.env['API_URL'] ?? '';
+    try {
+      final apiUrl = dotenv.env['API_URL'] ?? '';
 
-    final response =
-        await http.post(Uri.parse('$apiUrl/visitors/register'), body: {
-      'name': 'when_cobramos_flutter',
-    });
-    if (response.statusCode != 201) {
-      // Manejar error
+      final response =
+          await http.post(Uri.parse('$apiUrl/visitors/register'), body: {
+        'name': 'when_cobramos_flutter',
+      });
+      if (response.statusCode != 201) {
+        // Manejar error
+        if (kDebugMode) {
+          print('Error al registrar la visita');
+        }
+      }
+    } catch (e) {
       if (kDebugMode) {
-        print('Error al registrar la visita');
+        print('Error al registrar la visita: $e');
       }
     }
   }

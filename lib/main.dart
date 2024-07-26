@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:when_cobramos_flutter/services/notifications_services.dart';
 import 'package:when_cobramos_flutter/views/aguinaldo_page.dart';
 import 'package:when_cobramos_flutter/views/home_page.dart';
@@ -7,12 +9,12 @@ import 'package:when_cobramos_flutter/views/memes_page.dart';
 import 'package:when_cobramos_flutter/views/sueldo_page.dart';
 import 'package:when_cobramos_flutter/views/sugerencias_page.dart';
 import 'package:when_cobramos_flutter/components/footer_component.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-// core Flutter primitives
-import 'package:flutter/foundation.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'firebase_options.dart';
+// // core Flutter primitives
+// import 'package:flutter/foundation.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 
 class MyHomePage extends StatefulWidget {
   final String title;
@@ -32,6 +34,15 @@ class _MyHomePageState extends State<MyHomePage>
   void initState() {
     super.initState();
     _tabController = TabController(length: 6, vsync: this);
+
+    NotificationService()
+        .initNotifications()
+        .then((value) => print('Notificaciones inicializadas'))
+        .catchError((e) {
+      if (kDebugMode) {
+        print('Error al inicializar las notificaciones: $e');
+      }
+    });
   }
 
   @override
@@ -193,64 +204,6 @@ class _MyHomePageState extends State<MyHomePage>
 
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  WidgetsFlutterBinding.ensureInitialized();
-
-  final messaging = FirebaseMessaging.instance;
-
-  final settings = await messaging.requestPermission(
-    alert: true,
-    announcement: false,
-    badge: true,
-    carPlay: false,
-    criticalAlert: false,
-    provisional: false,
-    sound: true,
-  );
-
-  final vapidKey = dotenv.env['VAPID_KEY'] ?? '';
-
-  if (kDebugMode) {
-    print('Vapid Key: $vapidKey');
-  }
-
-  String? token;
-
-  if (DefaultFirebaseOptions.currentPlatform == DefaultFirebaseOptions.web) {
-    try {
-      token = await messaging.getToken(
-        vapidKey: vapidKey,
-      );
-    } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-    }
-  } else {
-    token = await messaging.getToken();
-  }
-
-  if (kDebugMode) {
-    print('Registration Token=$token');
-  }
-
-  /**
-   * Register token
-   */
-  try {
-    NotificationService().registerToken(token ?? '');
-  } catch (e) {
-    if (kDebugMode) {
-      print(e);
-    }
-  }
-
-  if (kDebugMode) {
-    print('Permission granted: ${settings.authorizationStatus}');
-  }
 
   runApp(const MaterialApp(
     title: 'Uen Cobramos',
