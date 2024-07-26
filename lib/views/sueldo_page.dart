@@ -100,7 +100,7 @@ class _SueldoPageState extends State<SueldoPage> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(30.0),
                       child: Image.asset(
-                        'assets/img/nutria-triste-3.jpg',
+                        'assets/img/nutria-triste.jpg',
                         fit: BoxFit.cover,
                       ),
                     ),

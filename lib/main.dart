@@ -122,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage>
                       children: [
                         Positioned.fill(
                           child: Image.asset(
-                            'assets/img/nutria-chambeadora.jpg',
+                            'assets/img/nutria-unicornio.jpg',
                             fit: BoxFit.cover,
                           ),
                         ),
