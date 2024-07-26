@@ -59,7 +59,21 @@ class NotificationService {
     }
   }
 
-  Future<void> initNotifications() async {
+  Future<bool> requestPermission() async {
+    final settings = await FirebaseMessaging.instance.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+
+    return settings.authorizationStatus == AuthorizationStatus.authorized;
+  }
+
+  Future<void> initNotifications(BuildContext context) async {
     await dotenv.load(fileName: ".env");
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
@@ -78,6 +92,30 @@ class NotificationService {
       provisional: false,
       sound: true,
     );
+
+    if (settings.authorizationStatus != AuthorizationStatus.authorized) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Permisos de notificaciones'),
+            content:
+                const Text('Activa las notificaciones para recibir alertas'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  requestPermission();
+                },
+                child: const Text('Aceptar'),
+              ),
+            ],
+          );
+        },
+      );
+
+      return;
+    }
 
     final vapidKey = dotenv.env['VAPID_KEY'] ?? '';
 
@@ -110,6 +148,17 @@ class NotificationService {
    */
     try {
       NotificationService().registerToken(token ?? '');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Notificaciones activadas'),
+          duration: Duration(seconds: 3),
+          behavior: SnackBarBehavior.floating,
+          margin: EdgeInsets.only(bottom: 16.0, left: 16.0, right: 16.0),
+          closeIconColor: Colors.white,
+          showCloseIcon: true,
+          dismissDirection: DismissDirection.horizontal,
+        ),
+      );
     } catch (e) {
       if (kDebugMode) {
         print(e);

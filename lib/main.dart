@@ -1,7 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:when_cobramos_flutter/services/notifications_services.dart';
 import 'package:when_cobramos_flutter/views/aguinaldo_page.dart';
 import 'package:when_cobramos_flutter/views/home_page.dart';
 import 'package:when_cobramos_flutter/views/informaciones_page.dart';
@@ -34,15 +32,6 @@ class _MyHomePageState extends State<MyHomePage>
   void initState() {
     super.initState();
     _tabController = TabController(length: 6, vsync: this);
-
-    NotificationService()
-        .initNotifications()
-        .then((value) => print('Notificaciones inicializadas'))
-        .catchError((e) {
-      if (kDebugMode) {
-        print('Error al inicializar las notificaciones: $e');
-      }
-    });
   }
 
   @override
