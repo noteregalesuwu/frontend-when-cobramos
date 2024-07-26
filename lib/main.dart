@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:when_cobramos_flutter/views/aguinaldo_page.dart';
 import 'package:when_cobramos_flutter/views/home_page.dart';
 import 'package:when_cobramos_flutter/views/informaciones_page.dart';
+import 'package:when_cobramos_flutter/views/login_view.dart';
 import 'package:when_cobramos_flutter/views/memes_page.dart';
 import 'package:when_cobramos_flutter/views/sueldo_page.dart';
 import 'package:when_cobramos_flutter/views/sugerencias_page.dart';
@@ -56,6 +57,19 @@ class _MyHomePageState extends State<MyHomePage>
                       fontWeight: FontWeight.bold,
                       color: Colors.white)),
               backgroundColor: const Color(0xFF20D3A4),
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginView(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.login),
+                ),
+              ],
               bottom: TabBar(
                 controller: _tabController,
                 tabs: const [
@@ -153,6 +167,11 @@ class _MyHomePageState extends State<MyHomePage>
                     title: const Text('Sugerencias'),
                     onTap: () => _onItemTapped(5),
                   ),
+                  ListTile(
+                    leading: const Icon(Icons.login),
+                    title: const Text('Iniciar sesión'),
+                    onTap: () => _onItemTapped(6),
+                  )
                 ],
               ),
             ),
@@ -168,6 +187,7 @@ class _MyHomePageState extends State<MyHomePage>
                       MemesPage(),
                       InformacionesPage(),
                       SugerenciasPage(),
+                      LoginView(),
                     ],
                   ),
                 ),
@@ -185,8 +205,7 @@ class _MyHomePageState extends State<MyHomePage>
 }
 
 Future<void> main() async {
-  // await dotenv.load(fileName: ".env");
-
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MaterialApp(
     title: 'Uen Cobramos',
     themeMode: ThemeMode.system,
