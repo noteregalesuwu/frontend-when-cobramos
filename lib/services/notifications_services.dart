@@ -74,7 +74,7 @@ class NotificationService {
   }
 
   Future<void> initNotifications(BuildContext context) async {
-    await dotenv.load(fileName: ".env");
+    // await dotenv.load(fileName: ".env");
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
