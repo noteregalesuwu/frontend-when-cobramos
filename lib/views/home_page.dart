@@ -16,6 +16,8 @@ class HomePage extends StatelessWidget {
       if (kDebugMode) {
         print('Error al inicializar las notificaciones: $e');
       }
+      NotificationService().saveDebugReport(
+          'Home:StateBuilder::initNotifications()', e.toString(), 'critical');
     });
 
     return Center(
