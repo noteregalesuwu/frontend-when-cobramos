@@ -4,7 +4,7 @@ ARG VAPID_KEY_ARG
 WORKDIR /app
 COPY . .
 RUN flutter pub get
-RUN flutter build web --release \
+RUN flutter build web --profile \
     --dart-define=API_URL=${FLUTTER_API_URL} \                      
     --dart-define=VAPID_KEY=${VAPID_KEY_ARG}
 FROM nginx:1.27.0-alpine
