@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../firebase_options.dart';
 
 class NotificationService {
@@ -27,13 +30,33 @@ class NotificationService {
     }
   }
 
-  Future<String> getToken() async {
+  Future<Object> getToken() async {
     try {
-      return await FirebaseMessaging.instance.getToken() ?? '';
+      //Obtener el token desde shared preferences
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? localToken = prefs.getString('firebase_token');
+      final existLocalToken = localToken != null && localToken.isNotEmpty;
+      if (!existLocalToken) {
+        if (kDebugMode) {
+          print('No token found on local, requesting new token');
+        }
+        const vapidKey = String.fromEnvironment('VAPID_KEY', defaultValue: '');
+        final fromFirebaseToken =
+            await FirebaseMessaging.instance.getToken(vapidKey: vapidKey);
+        //Save token in shared preferences
+        prefs.setString('firebase_token', fromFirebaseToken.toString());
+        return fromFirebaseToken.toString();
+      } else {
+        if (kDebugMode) {
+          print('Token obtenido desde local: $localToken');
+        }
+        return localToken.toString();
+      }
     } catch (e) {
       if (kDebugMode) {
         print('Error al obtener el token: $e');
       }
+      ('NotificationsService::getToken()', e.toString(), 'critical');
       return '';
     }
   }
@@ -116,35 +139,26 @@ class NotificationService {
       return;
     }
 
-    const vapidKey = String.fromEnvironment('VAPID_KEY', defaultValue: '');
-
-    if (kDebugMode) {
-      print('Vapid Key: $vapidKey');
-    }
-
-    String? token;
+    Object token;
 
     if (DefaultFirebaseOptions.currentPlatform == DefaultFirebaseOptions.web) {
       try {
-        token = await messaging.getToken(
-          vapidKey: vapidKey,
-        );
+        token = await getToken();
       } catch (e) {
         if (kDebugMode) {
           print(e);
         }
+        saveDebugReport(
+            'NotificationService::initNotifications()', e.toString(), 'error');
+        token = '';
       }
+    } else {
+      //Only for web, if not web abort
+      return;
     }
 
-    if (kDebugMode) {
-      print('Registration Token=$token');
-    }
-
-    /**
-   * Register token
-   */
     try {
-      NotificationService().registerToken(token ?? '');
+      NotificationService().registerToken(token.toString());
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Notificaciones activadas'),
@@ -160,10 +174,40 @@ class NotificationService {
       if (kDebugMode) {
         print(e);
       }
+      // Send report to http endpoint
+      saveDebugReport('NotificationService', e.toString(), 'error');
     }
+  }
 
-    if (kDebugMode) {
-      print('Permission granted: ${settings.authorizationStatus}');
+  Future<void> saveDebugReport(
+      String module, String errorMessage, String errorLevel) async {
+    try {
+      const apiUrl = String.fromEnvironment('API_URL', defaultValue: '');
+      final response = await http.post(
+        Uri.parse('$apiUrl/debug_report/create'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'module': module,
+          'error_message': errorMessage,
+          'error_level': errorLevel,
+        }),
+      );
+      var responseJson = jsonDecode(response.body);
+      if (responseJson['statusCode'] == 200) {
+        if (kDebugMode) {
+          print('Reporte enviado');
+        }
+      } else {
+        if (kDebugMode) {
+          print('Error al enviar el reporte');
+        }
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error al enviar el reporte: $e');
+      }
     }
   }
 }
