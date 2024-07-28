@@ -169,7 +169,10 @@ class NotificationService {
     try {
       saveDebugReport('NotificationsService::registerTokenIntoAPI',
           'Guardando este token:$token', 'debug');
-      NotificationService().registerToken(token.toString());
+      final registerResult =
+          await NotificationService().registerToken(token.toString());
+      await saveDebugReport('NotificationsService::registerTokenIntoAPI::post',
+          registerResult.toString(), 'debug');
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Notificaciones activadas'),
