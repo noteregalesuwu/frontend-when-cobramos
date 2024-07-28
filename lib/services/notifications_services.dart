@@ -116,6 +116,8 @@ class NotificationService {
     );
 
     if (settings.authorizationStatus != AuthorizationStatus.authorized) {
+      saveDebugReport('NotificationsService::authStatus',
+          'No se tienen los permisos requeridos', 'debug');
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -136,28 +138,37 @@ class NotificationService {
         },
       );
 
-      return;
+      // return;
     }
 
     Object token;
 
+    saveDebugReport('NotificationsService::currentPlatform',
+        DefaultFirebaseOptions.currentPlatform.toString(), 'debug');
+
     if (DefaultFirebaseOptions.currentPlatform == DefaultFirebaseOptions.web) {
       try {
+        saveDebugReport('NotificationsService::retrievingTokenFromTarget',
+            'Obteniendo token', 'debug');
         token = await getToken();
       } catch (e) {
         if (kDebugMode) {
           print(e);
         }
-        saveDebugReport(
-            'NotificationService::initNotifications()', e.toString(), 'error');
+        saveDebugReport('NotificationService::initNotifications()::catch',
+            e.toString(), 'error');
         token = '';
       }
     } else {
+      saveDebugReport('NotificationsService::currentPlatformElse',
+          'No es una plataforma web', 'debug');
       //Only for web, if not web abort
       return;
     }
 
     try {
+      saveDebugReport('NotificationsService::registerTokenIntoAPI',
+          'Guardando este token:$token', 'debug');
       NotificationService().registerToken(token.toString());
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -175,7 +186,8 @@ class NotificationService {
         print(e);
       }
       // Send report to http endpoint
-      saveDebugReport('NotificationService', e.toString(), 'error');
+      saveDebugReport('NotificationService::registerTokenIntoAPI:catch',
+          e.toString(), 'error');
     }
   }
 
