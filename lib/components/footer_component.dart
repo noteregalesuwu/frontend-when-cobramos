@@ -90,7 +90,7 @@ class _FooterComponentState extends State<FooterComponent> {
                 fontWeight: FontWeight.bold),
           ),
           const Text(
-            'Version 0.0.9e-release',
+            'Version 0.0.9f-release',
             style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'Montserrat',

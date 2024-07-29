@@ -69,9 +69,9 @@ class NotificationService {
         'token': token,
       });
       if (response.statusCode == 201) {
-        return 'Token registrado correctamente';
+        return 'Token $token registrado correctamente';
       } else {
-        return 'Error al registrar el token';
+        return 'Error al registrar el token $token';
       }
     } catch (e) {
       if (kDebugMode) {
