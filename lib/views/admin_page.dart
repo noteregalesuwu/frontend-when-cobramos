@@ -44,7 +44,8 @@ class AdminPageState extends State<AdminPage> {
     }
   }
 
-  Future<void> _sendNotification(String title, String message) async {
+  Future<void> _sendNotification(
+      String title, String message, String? url) async {
     try {
       const String apiUrl = String.fromEnvironment('API_URL', defaultValue: '');
       final response = await http.post(
@@ -56,6 +57,7 @@ class AdminPageState extends State<AdminPage> {
         body: jsonEncode(<String, String>{
           'title': title,
           'body': message,
+          'image': url ?? '',
         }),
       );
       var responseJson = jsonDecode(response.body);
@@ -139,6 +141,7 @@ class AdminPageState extends State<AdminPage> {
   void _showNotificationDialog() {
     final TextEditingController titleController = TextEditingController();
     final TextEditingController messageController = TextEditingController();
+    final TextEditingController urlController = TextEditingController();
 
     showDialog(
       context: context,
@@ -148,13 +151,36 @@ class AdminPageState extends State<AdminPage> {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              TextField(
+              TextFormField(
                 controller: titleController,
-                decoration: const InputDecoration(labelText: 'Título'),
+                decoration: const InputDecoration(
+                  labelText: 'Título',
+                  labelStyle: TextStyle(fontSize: 18),
+                ),
+                style: const TextStyle(fontSize: 18),
               ),
-              TextField(
+              const SizedBox(height: 16),
+              TextFormField(
                 controller: messageController,
-                decoration: const InputDecoration(labelText: 'Mensaje'),
+                decoration: const InputDecoration(
+                  labelText: 'Mensaje',
+                  labelStyle: TextStyle(fontSize: 18),
+                ),
+                style: const TextStyle(fontSize: 18),
+                maxLines: 3, // Permite múltiples líneas para el mensaje
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: urlController,
+                decoration: const InputDecoration(
+                  labelText: 'URL',
+                  labelStyle: TextStyle(fontSize: 18),
+                  suffixIcon: Tooltip(
+                    message: 'Este campo es opcional',
+                    child: Icon(Icons.info_outline, color: Colors.grey),
+                  ),
+                ),
+                style: const TextStyle(fontSize: 18),
               ),
             ],
           ),
@@ -167,7 +193,8 @@ class AdminPageState extends State<AdminPage> {
             ),
             ElevatedButton(
               onPressed: () {
-                _sendNotification(titleController.text, messageController.text);
+                _sendNotification(titleController.text, messageController.text,
+                    urlController.text);
                 Navigator.of(context).pop();
               },
               child: const Text('Enviar'),
