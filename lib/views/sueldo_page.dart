@@ -33,7 +33,8 @@ class _SueldoPageState extends State<SueldoPage> {
         lastDay.weekday == DateTime.sunday) {
       lastDay = lastDay.subtract(const Duration(days: 1));
     }
-    return lastDay;
+    DateTime result = DateTime(lastDay.year, lastDay.month, lastDay.day, 21, 0);
+    return result;
   }
 
   void _startTimer() {
@@ -58,9 +59,10 @@ class _SueldoPageState extends State<SueldoPage> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final isLargeScreen = screenWidth > 600;
-    // SI quedan 0 dias lanzar confetti y activar el modo de hoy se cobra XD
-    bool isPayDay = _timeRemaining.inDays <= 0;
-
+    // SI quedan 0 dias y 12 horas lanzar confetti y activar el modo de hoy se cobra XD
+    int remainingHoursToday =
+        _timeRemaining.inHours - (_timeRemaining.inDays * 24);
+    bool isPayDay = _timeRemaining.inDays == 0 && remainingHoursToday <= 12;
     if (isPayDay) {
       _confettiController.play();
     }
