@@ -113,6 +113,44 @@ class _SueldoPageState extends State<SueldoPage> {
                         // ),
                       ),
                     ),
+                    FractionallySizedBox(
+                      widthFactor:
+                          MediaQuery.of(context).size.width > 600 ? 0.5 : 1.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(30.0),
+                              child: Image.asset(
+                                'assets/img/nutria1.webp',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(30.0),
+                              child: Image.asset(
+                                'assets/img/nutria2.gif',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(30.0),
+                              child: Image.asset(
+                                'assets/img/nutria3.gif',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
