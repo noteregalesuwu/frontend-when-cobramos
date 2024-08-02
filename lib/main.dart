@@ -4,6 +4,7 @@ import 'package:when_cobramos_flutter/views/home_page.dart';
 import 'package:when_cobramos_flutter/views/informaciones_page.dart';
 import 'package:when_cobramos_flutter/views/login_view.dart';
 import 'package:when_cobramos_flutter/views/memes_page.dart';
+import 'package:when_cobramos_flutter/views/noticias_page.dart';
 import 'package:when_cobramos_flutter/views/sueldo_page.dart';
 import 'package:when_cobramos_flutter/views/sugerencias_page.dart';
 import 'package:when_cobramos_flutter/components/footer_component.dart';
@@ -25,7 +26,7 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 6, vsync: this);
+    _tabController = TabController(length: 7, vsync: this);
   }
 
   @override
@@ -79,6 +80,7 @@ class _MyHomePageState extends State<MyHomePage>
                   Tab(text: 'Memes', icon: Icon(Icons.mood)),
                   Tab(text: 'Informaciones', icon: Icon(Icons.info)),
                   Tab(text: 'Sugerencias', icon: Icon(Icons.feedback)),
+                  Tab(text: 'Noticias', icon: Icon(Icons.newspaper_sharp)),
                 ],
               ),
             ),
@@ -94,6 +96,7 @@ class _MyHomePageState extends State<MyHomePage>
                       MemesPage(),
                       InformacionesPage(),
                       SugerenciasPage(),
+                      NoticiasPage(),
                     ],
                   ),
                 ),
@@ -168,6 +171,11 @@ class _MyHomePageState extends State<MyHomePage>
                     onTap: () => _onItemTapped(5),
                   ),
                   ListTile(
+                    leading: const Icon(Icons.newspaper_sharp),
+                    title: const Text('Noticias'),
+                    onTap: () => _onItemTapped(7),
+                  ),
+                  ListTile(
                     leading: const Icon(Icons.login),
                     title: const Text('Iniciar sesión'),
                     onTap: () => _onItemTapped(6),
@@ -188,6 +196,7 @@ class _MyHomePageState extends State<MyHomePage>
                       InformacionesPage(),
                       SugerenciasPage(),
                       LoginView(),
+                      NoticiasPage(),
                     ],
                   ),
                 ),
